@@ -91,6 +91,7 @@ def get_project_path(project_name):
     return root_path
 
 
+
 def loadfile(filename, datatype='float32', shape=None):
     file_array = np.fromfile(filename, dtype=datatype)
     if shape:

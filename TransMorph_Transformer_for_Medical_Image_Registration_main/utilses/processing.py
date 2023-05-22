@@ -232,8 +232,8 @@ def dirlab_test(args, file_folder, m_path, f_path, datatype, shape, case):
 
         img = crop_resampling_resize_clamp(img, None,
                                            args.dirlab_cfg[case]['crop_range'][::-1],
-                                           [144, 144, 144],
-                                           [0, 900])
+                                           [160, 160, 160],
+                                           [None, 900])
 
         case_name = 'dirlab_case%02d.nii.gz' % case
         target_file_path = os.path.join(target_path,
@@ -766,11 +766,11 @@ if __name__ == '__main__':
     # dirlab for test
     # print("dirlab: ")
     #
-    # for item in dirlab_case_cfg.items():
-    #     case = item[0]
-    #     shape = item[1]
-    #     img_path = os.path.join(project_folder, f'datasets/dirlab/img/Case{case}Pack/Images')
-    #     dirlab_test(args, img_path, target_test_moving_path, target_test_fixed_path, np.int16, shape, case)
+    for item in dirlab_case_cfg.items():
+        case = item[0]
+        shape = item[1]
+        img_path = os.path.join(project_folder, f'datasets/dirlab/img/Case{case}Pack/Images')
+        dirlab_test(args, img_path, target_test_moving_path, target_test_fixed_path, np.int16, shape, case)
 
     # # COPD数据集img转nii.gz
     # print("copd: ")

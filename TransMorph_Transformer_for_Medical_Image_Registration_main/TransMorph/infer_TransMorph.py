@@ -182,17 +182,17 @@ if __name__ == '__main__':
     '''
     GPU configuration
     '''
-    GPU_iden = 1
-    GPU_num = torch.cuda.device_count()
-    print('Number of GPU: ' + str(GPU_num))
-    for GPU_idx in range(GPU_num):
-        GPU_name = torch.cuda.get_device_name(GPU_idx)
-        print('     GPU #' + str(GPU_idx) + ': ' + GPU_name)
-    torch.cuda.set_device(GPU_iden-1)
-    GPU_avai = torch.cuda.is_available()
-    print('Currently using: ' + torch.cuda.get_device_name(GPU_iden-1))
-    print('If the GPU is available? ' + str(GPU_avai))
-
+    # GPU_iden = 1
+    # GPU_num = torch.cuda.device_count()
+    # print('Number of GPU: ' + str(GPU_num))
+    # for GPU_idx in range(GPU_num):
+    #     GPU_name = torch.cuda.get_device_name(GPU_idx)
+    #     print('     GPU #' + str(GPU_idx) + ': ' + GPU_name)
+    # torch.cuda.set_device(GPU_iden-1)
+    # GPU_avai = torch.cuda.is_available()
+    # print('Currently using: ' + torch.cuda.get_device_name(GPU_iden-1))
+    # print('If the GPU is available? ' + str(GPU_avai))
+    #
     args = get_args()
     device = args.device
 
@@ -226,7 +226,7 @@ if __name__ == '__main__':
                                         landmark_files=landmark_list)
     test_loader_dirlab = Data.DataLoader(test_dataset_dirlab, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
-    prefix = '2023-05-13-16-57-31'
+    prefix = '2023-05-19-15-32-20'
     model_dir = args.checkpoint_path
 
     config = CONFIGS_TM['TransMorph']

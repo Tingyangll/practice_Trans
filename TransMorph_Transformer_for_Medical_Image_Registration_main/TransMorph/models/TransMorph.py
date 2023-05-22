@@ -24,6 +24,7 @@ import torch.nn.functional as nnf
 import numpy as np
 import configs_TransMorph as configs
 
+from layers import SpatialTransformer as SpatialTransformerself
 
 class Mlp(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
@@ -879,6 +880,7 @@ class TransMorph(nn.Module):
         )
         self.spatial_trans = SpatialTransformer(config.img_size)
         self.avg_pool = nn.AvgPool3d(3, stride=2, padding=1)
+        self.STN = SpatialTransformerself()
 
     def forward(self, x, infer=True):
         source = x[:, 0:1, :, :]
@@ -910,7 +912,8 @@ class TransMorph(nn.Module):
         flow = self.reg_head(x)
 
         if infer:
-            out = self.spatial_trans(source, flow)
+            # out = self.spatial_trans(source, flow)
+            out = self.STN(source, flow)
             return out, flow
 
         else:
